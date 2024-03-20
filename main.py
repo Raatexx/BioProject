@@ -5,9 +5,29 @@ from Bio import SeqIO
 caminhoDoArquivo = 'data/gene.fna'
 
 #realizando leitura do arquivo fna
-memoria = []
+nucleotideo = []
 with open(caminhoDoArquivo, 'r') as arquivo:
     for sequencia in SeqIO.parse(arquivo, 'fasta'):
-        memoria.append(str(sequencia.seq))
-        print(memoria)
+        nucleotideo.append(str(sequencia.seq))
 
+# Método responsável pela transcrição
+def transcricao(nucleotideo):
+    genomaTranscrito = []
+    transcricaoSeq = []
+    for seq in nucleotideo: # Inteirando sobre o arquivo fasta
+        for nucleotideo in seq:# Inteirando no método transcrição # n²
+            if nucleotideo == 'T':
+                transcricaoSeq.append('A')
+            elif nucleotideo == 'A':
+                transcricaoSeq.append('U')
+            elif nucleotideo == 'G':
+                transcricaoSeq.append('C')
+            elif nucleotideo == 'C':
+                transcricaoSeq.append('G')
+    genomaTranscrito.append(''.join(transcricaoSeq)) # Cocatena os nucleotídeos em uma única string.
+        
+    print(genomaTranscrito)
+    
+                    
+
+transcricao(nucleotideo)
