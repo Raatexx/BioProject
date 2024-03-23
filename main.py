@@ -6,8 +6,8 @@ caminhoDoArquivo = 'data/gene.fna'
 
 #realizando leitura do arquivo fna
 nucleotideo = []
-with open(caminhoDoArquivo, 'r') as arquivo:
-    for sequencia in SeqIO.parse(arquivo, 'fasta'):
+with open(caminhoDoArquivo, 'r') as dna:
+    for sequencia in SeqIO.parse(dna, 'fasta'):
         nucleotideo.append(str(sequencia.seq))
 
 # Método responsável pela transcrição
