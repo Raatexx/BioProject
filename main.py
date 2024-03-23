@@ -3,7 +3,7 @@ from Bio import SeqIO
 #setando caminho do arquivo
 
 caminhoDoArquivo = 'data/tumorNecrosis/ncbi_dataset/data/gene.fna'
-caminhoSegundoArquivo = 'data/tumorProtein/ncbi_dataset/data/gene.fna'
+caminhoSegundoArquivo = 'data/tumorProtein/ncbi_dataset/data/gene2.fna'
 
 #realizando leitura do arquivo fna
 nucleotideo = []
@@ -34,7 +34,7 @@ def transcricao(nucleotideo):
         
     print(genomaTranscrito)
     
-rnaMensageiro = ['AUGAUUUCGUAA']  
+rnaMensageiro = []  
 def traducao(rnaMensageiro):
     sinteseProteica = []
     for codon in rnaMensageiro:  # iterador para cada base nitrogenada
@@ -97,10 +97,11 @@ def comparador(nucleotideo, nucleotideoDois):
         
     memoria = []
     contador = 0
-    for i in range(0, len(nucleotideoUmSep)):
-        if nucleotideoUmSep[i] == nucleotideoDoisSep[i]:
-            contador = contador + 1
-            memoria.append((nucleotideoUmSep[i], nucleotideoDoisSep[i]))
+    indexSalvo = []
+    for i, x in zip(nucleotideoUmSep, nucleotideoDoisSep):
+            if i == x:
+                contador = contador + 1
+                memoria.append((i, x))
     print(memoria, contador)
 comparador(nucleotideo, nucleotideoDois)
 
