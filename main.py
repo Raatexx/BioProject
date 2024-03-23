@@ -2,7 +2,8 @@ from Bio import SeqIO
 
 #setando caminho do arquivo
 
-caminhoDoArquivo = 'data/gene.fna'
+caminhoDoArquivo = 'data/tumorNecrosis/ncbi_dataset/data/gene.fna'
+caminhoSegundoArquivo = 'data/tumorProtein/ncbi_dataset/data/gene.fna'
 
 #realizando leitura do arquivo fna
 nucleotideo = []
@@ -10,11 +11,16 @@ with open(caminhoDoArquivo, 'r') as dna:
     for sequencia in SeqIO.parse(dna, 'fasta'):
         nucleotideo.append(str(sequencia.seq))
 
+nucleotideoDois = []
+with open(caminhoSegundoArquivo, 'r') as dna2:
+    for sequenciaDois in SeqIO.parse(dna2, 'fasta'):
+        nucleotideoDois.append(str(sequenciaDois.seq))
+        
 # Método responsável pela transcrição
 def transcricao(nucleotideo):
     genomaTranscrito = []
     transcricaoSeq = []
-    for seq in nucleotideo: # Inteirando sobre o arquivo fasta
+    for seq in sequencia: # Inteirando sobre o arquivo fasta
         for nucleotideo in seq:# Inteirando no método transcrição # n²
             if nucleotideo == 'T':
                 transcricaoSeq.append('A')
@@ -77,8 +83,31 @@ def traducao(rnaMensageiro):
                 sinteseProteica.append('Parada')
     print(sinteseProteica)
                 
-def comparador(dna1, dna2):
-    
+def comparador(nucleotideo, nucleotideoDois):
+    nucleotideoUmSep = []
+    nucleotideoDoisSep = []
+    contador = 0
+    for bases in nucleotideo:
+        for char in bases:
+            nucleotideoUmSep.append(char)
+            
+    for bases in nucleotideoDois:
+        for char in bases:
+            nucleotideoDoisSep.append(char)
+        
+    memoria = []
+    contador = 0
+    for i in range(0, len(nucleotideoUmSep)):
+        if nucleotideoUmSep[i] == nucleotideoDoisSep[i]:
+            contador = contador + 1
+            memoria.append((nucleotideoUmSep[i], nucleotideoDoisSep[i]))
+    print(memoria, contador)
+comparador(nucleotideo, nucleotideoDois)
+
+
+
+
+                
         
     
                     
