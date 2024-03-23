@@ -77,7 +77,8 @@ def traducao(rnaMensageiro):
                 sinteseProteica.append('Parada')
     print(sinteseProteica)
                 
-traducao(rnaMensageiro)
+def comparador(dna1, dna2):
+    
         
     
                     
