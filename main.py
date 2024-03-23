@@ -35,6 +35,7 @@ def transcricao(nucleotideo):
     print(genomaTranscrito)
     
 rnaMensageiro = []  
+#Método responsável pela tradução
 def traducao(rnaMensageiro):
     sinteseProteica = []
     for codon in rnaMensageiro:  # iterador para cada base nitrogenada
@@ -42,7 +43,7 @@ def traducao(rnaMensageiro):
             if codon[x -3: x] == 'AUG': # condição para formação das proteínas
                 sinteseProteica.append('Met')
             elif codon[x -3: x] == 'AUC' or codon[x -3: x] == 'AUU' or codon[x -3: x] == 'AUA':
-                sinteseProteica.append('Ile')
+                sinteseProteica.append('Ile') # Verifica qual é a sequencia do codon e adiciona a proteina de acordo.
             elif codon[x -3: x] == 'UCG' or codon[x -3: x] == 'UCA' or codon[x -3: x] == 'UCC' or codon[x -3: x] == 'UCU' or codon[x -3: x] == 'AGU' or codon[x -3: x] == 'AGC':
                 sinteseProteica.append('Ser')
             elif codon[x -3: x] ==  'UUU' or  codon[x -3: x] == 'UUC':
@@ -82,27 +83,49 @@ def traducao(rnaMensageiro):
             elif codon[x -3: x] == 'UAA' or codon[x -3: x] == 'UAG' or codon[x -3: x] == 'UGA':
                 sinteseProteica.append('Parada')
     print(sinteseProteica)
-                
+
+#Método responsável pela comparação
 def comparador(nucleotideo, nucleotideoDois):
     nucleotideoUmSep = []
     nucleotideoDoisSep = []
     contador = 0
     for bases in nucleotideo:
         for char in bases:
-            nucleotideoUmSep.append(char)
+            nucleotideoUmSep.append(char) # Separa os nucleotídeos em caracteres
             
     for bases in nucleotideoDois:
         for char in bases:
-            nucleotideoDoisSep.append(char)
+            nucleotideoDoisSep.append(char) # Separa o nucleotídeo 2 em caracteres
         
     memoria = []
     contador = 0
-    indexSalvo = []
-    for i, x in zip(nucleotideoUmSep, nucleotideoDoisSep):
+    # indexSalvo = []
+    for i, x in zip(nucleotideoUmSep, nucleotideoDoisSep):# Verifica se os valores são iguais em formato de tupla
             if i == x:
                 contador = contador + 1
-                memoria.append((i, x))
-    print(memoria, contador)
+                memoria.append((i, x)) 
+                
+    
+    # Comparador em relação oa maior ou menor dna
+    if len(nucleotideoUmSep) >= len(nucleotideoDoisSep):
+        maiorDna = len(nucleotideoUmSep)
+        menorDna = len(nucleotideoDoisSep)
+    else:
+        maiorDna = len(nucleotideoDoisSep)
+        menorDna = len(nucleotideoUmSep)
+    
+    escolha = 0
+    escolha = int(input('-' * 20 + ' Comparador ' + '-' * 20 + 
+                        '\nComaparação com o maior DNA - 1' + 
+                        '\nComparação com o menor DNA - 2\n'))
+    if escolha == 1:
+        porcentagem = contador * 100 / maiorDna
+    elif escolha == 2: 
+        porcentagem = contador * 100 / menorDna
+    
+    print(f'{porcentagem:.2f}')
+                
+    
 comparador(nucleotideo, nucleotideoDois)
 
 
