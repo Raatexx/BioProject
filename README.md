@@ -1,0 +1,1 @@
+This was a first time of the idea about my application. This version was made for a propourse that was understand was the logic at backend of the reading the archives and how i can started the ideas of application.
